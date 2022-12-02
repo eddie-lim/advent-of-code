@@ -7,9 +7,7 @@ export function day1(input) {
             (accumulator, currentValue) => parseInt(accumulator) + parseInt(currentValue),
             0
         );
-        if(highestValue <= sum){
-            highestValue = sum;
-        }
+        highestValue = highestValue < sum ? sum : highestValue;
     })
     return highestValue;
 }
