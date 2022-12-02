@@ -1,4 +1,6 @@
-export function day1(input) {
+const day = 1
+
+function execute(input){
     const elves = input.split("\n\n");
     var highestValue = -1;
     elves.forEach(function(currentValue){
@@ -10,4 +12,9 @@ export function day1(input) {
         highestValue = highestValue < sum ? sum : highestValue;
     })
     return highestValue;
+}
+
+export {
+    execute,
+    day
 }
