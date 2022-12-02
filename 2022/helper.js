@@ -7,6 +7,5 @@ export async function getDaysInput(day) {
       year: 2022, // the year of the challenge
       day: day, // the day of the challenge
       token: process.env.TOKEN, // the session cookie from adventofcode.com
-      useCache: false
     }).getInput();
 }
