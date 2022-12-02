@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 import { AocClient } from 'advent-of-code-client'
 
-export async function getDaysInput(day) {
+export async function getDayInput(day) {
     return await new AocClient({
       year: 2022, // the year of the challenge
       day: day, // the day of the challenge

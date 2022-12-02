@@ -1,21 +1,14 @@
-import { getDaysInput } from './helper.js';
+import { getDayInput } from './helper.js';
 
-const part1 = (input) => {
-    const elves = input.split("\n\n");
-    var highestValue = -1;
-    elves.forEach(function(currentValue){
-        const elf = currentValue.split("\n");
-        const sum = elf.reduce(
-            (accumulator, currentValue) => parseInt(accumulator) + parseInt(currentValue),
-            0
-        );
-        highestValue = highestValue < sum ? sum : highestValue;
-    })
-
-    console.log("day 1 - part 1:", highestValue);
+const part1 = (elves) => {
+    console.log("day 1 - part 1:", elves[0]);
 }
 
-const part2 = (input) => {
+const part2 = (elves) => {
+    console.log("day 1 - part 2:", elves[0] + elves[1] + elves[2]);
+}
+
+const calculateCaloriesPerElf = (input) => {
     var elves = input.split("\n\n");
     elves.forEach(function(currentValue, i){
         const elf = currentValue.split("\n");
@@ -28,12 +21,12 @@ const part2 = (input) => {
     elves.sort((a,b)=>{
         return b-a;
     });
-    const totalOfTop3 = elves[0] + elves[1] + elves[2];
-    console.log("day 1 - part 2:", totalOfTop3);
+    return elves;
 }
 
 export async function execute(){
-    const input = await getDaysInput(1)
-    part1(input);
-    part2(input);
+    const input = await getDayInput(1)
+    const elves = calculateCaloriesPerElf(input)
+    part1(elves);
+    part2(elves);
 }
