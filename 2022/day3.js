@@ -30,21 +30,48 @@ const priority = {
 }
 
 const part1 = (rucksack) => {
-    const sum = rucksack.split("\n").reduce(
+    const [sum, groupedRucksack] = rucksack.split("\n").reduce(
         (accumulator, item) => {
+            const [sum, groupedRucksack] = accumulator;
             const half = item.length / 2;
             const compartment1 = Array.from(item.slice(0, half));
             const compartment2 = Array.from(item.slice(half));
             const shared = compartment1.filter(element => compartment2.includes(element));
             const itemPriority = priority[shared[0]];
-            return accumulator + itemPriority
+            
+            if (groupedRucksack[groupedRucksack.length - 1].length >= 3){
+                groupedRucksack.push([]);
+            }
+            groupedRucksack[groupedRucksack.length - 1].push(Array.from(item));
+
+            return [sum + itemPriority, groupedRucksack];
+        },
+        [0, [[]]]
+    );
+    console.log("day 3 - part 1:", sum);
+    return groupedRucksack;
+}
+
+const part2 = (groupedRucksack) => {
+    const sum = groupedRucksack.reduce(
+        (accumulator, group) => {
+            var shared = group.shift().reduce(function(res, v) {
+                if (res.indexOf(v) === -1 && group.every(function(a) {
+                    return a.indexOf(v) !== -1;
+                })) res.push(v);
+                return res;
+            }, []);
+
+            const itemPriority = priority[shared[0]];
+            return accumulator + itemPriority;
         },
         0
     );
-    console.log("day 3 - part 1:", sum);
+    console.log("day 3 - part 2:", sum);
 }
 
 export async function execute(){
     const rucksack = await getDayInput(3)
-    part1(rucksack);
+    const groupedRucksack = part1(rucksack);
+    part2(groupedRucksack)
 }

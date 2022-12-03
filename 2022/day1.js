@@ -10,7 +10,7 @@ const part2 = (elves) => {
 
 const calculateCaloriesPerElf = (input) => {
     var elves = input.split("\n\n");
-    elves.forEach(function(calories, i){
+    elves.forEach((calories, i) => {
         const elf = calories.split("\n");
         const sum = elf.reduce(
             (accumulator, calories) => parseInt(accumulator) + parseInt(calories),
