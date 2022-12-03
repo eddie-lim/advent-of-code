@@ -36,12 +36,6 @@ const points = new Map([
     [WON, 6],
 ]);
 
-const choices = {
-    1 : ROCK,
-    2 : PAPER,
-    3 : SCISSORS,
-}
-
 const mechanismPart1 = { // Enemy will be negative. (Format = Enemy + Me)
     "0" : DRAW,  // ROCK(-1) + ROCK(1) = 0. // PAPER(-2) + PAPER(2) = 0. // SCISSORS(-3) + SCISSORS(3) = 0.
     "1" : WON,   // ROCK(-1) + PAPER(2) = 1. ROCK lose to PAPER. // PAPER(-2) + SCISSORS(3) = 1. PAPER lose to SCISSORS.
@@ -62,7 +56,7 @@ const mechanismPart2 = new Map([
             [PAPER, ROCK],
             [SCISSORS, PAPER],
         ])
-    ],  // ROCK(-1) + SCISSORS(3) = 2. ROCK wins SCISSORS.
+    ],
 ]);
 
 const part1 = (input) => {
