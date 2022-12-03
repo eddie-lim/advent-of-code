@@ -60,35 +60,37 @@ const mechanismPart2 = new Map([
 ]);
 
 const part1 = (input) => {
-    const round = input.split("\n");
-    var totalScore = 0
-    round.forEach(function(currentValue, i){
-        const [enemy, me] = currentValue.split(" ");
-        const enemyChoice = mapChoicePart1.get(enemy);
-        const myChoice = mapChoicePart1.get(me);
-        const play = -points.get(enemyChoice) + points.get(myChoice)
-        const result = mechanismPart1[play + ""];
-        totalScore += points.get(result) + points.get(myChoice);
-    });
+    const totalScore = input.split("\n").reduce(
+        (accumulator, currentValue) => {
+            const [enemy, me] = currentValue.split(" ");
+            const enemyChoice = mapChoicePart1.get(enemy);
+            const myChoice = mapChoicePart1.get(me);
+            const play = -points.get(enemyChoice) + points.get(myChoice)
+            const result = mechanismPart1[play + ""];
+            return accumulator + points.get(result) + points.get(myChoice)
+        },
+        0
+    );
     console.log("day 2 - part 1:", totalScore);
 }
 
 const part2 = (input) => {
-    const round = input.split("\n");
-    var totalScore = 0
-    round.forEach(function(currentValue){
-        const [enemy, me] = currentValue.split(" ");
-        const enemyChoice = mapChoicePart2.get(enemy);
-        if(me == "Y"){
-            totalScore += points.get(DRAW) + points.get(enemyChoice)
-        } else {
-            const myResult = mapChoicePart2.get(me);
-            const myChoices = mechanismPart2.get(myResult);
-            const myPlay = myChoices.get(enemyChoice);
-            
-            totalScore += points.get(myResult) + points.get(myPlay) ;
-        }
-    });
+    const totalScore = input.split("\n").reduce(
+        (accumulator, currentValue) => {
+            const [enemy, me] = currentValue.split(" ");
+            const enemyChoice = mapChoicePart2.get(enemy);
+            if(me == "Y"){
+                return accumulator + points.get(DRAW) + points.get(enemyChoice)
+            } else {
+                const myResult = mapChoicePart2.get(me);
+                const myChoices = mechanismPart2.get(myResult);
+                const myPlay = myChoices.get(enemyChoice);
+                
+                return accumulator + points.get(myResult) + points.get(myPlay) ;
+            }
+        },
+        0
+    );
     console.log("day 2 - part 2:", totalScore);
 }
 
