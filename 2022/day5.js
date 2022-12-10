@@ -17,7 +17,7 @@ const process = (input, isPart1) => {
         topLevel += stack[stack.length-1];
     });
 
-    console.log("day 5 - part "+ isPart1 == true ? 1 : 2 +":", topLevel);
+    console.log("day 5 - part "+ (isPart1 == true ? "1" : "2") +":", topLevel);
 }
 
 const getStack = (row, stacks) => {
